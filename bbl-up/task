@@ -98,6 +98,7 @@ function main() {
 
     bbl --debug up ${name_flag} > "${root_dir}"/bbl_up.txt
 	
+	echo wtf
 	cat "${root_dir}"/bbl_up.txt
 
     # The two commands below amount to "create or update"
