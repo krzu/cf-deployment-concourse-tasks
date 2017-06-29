@@ -96,7 +96,7 @@ function main() {
       domain_flag="--domain=${LB_DOMAIN}"
     fi
 
-    bbl --debug up ${name_flag} > "${root_dir}"/bbl_up.txt
+    bbl --debug up ${name_flag}
 
     # The two commands below amount to "create or update"
     bbl \
@@ -106,14 +106,14 @@ function main() {
       --cert="${bbl_cert_path}" \
       --key="${bbl_key_path}" \
       --skip-if-exists \
-      ${domain_flag} > "${root_dir}"/bbl_create_lbs.txt
+      ${domain_flag}
 
     bbl \
       --debug \
       update-lbs \
       --cert="${bbl_cert_path}" \
       --key="${bbl_key_path}" \
-      ${domain_flag} > "${root_dir}"/bbl_update_lbs.txt
+      ${domain_flag}
   popd
 }
 
