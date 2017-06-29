@@ -96,10 +96,9 @@ function main() {
       domain_flag="--domain=${LB_DOMAIN}"
     fi
 
-    bbl --debug up ${name_flag} > "${root_dir}"/bbl_up.txt
+    bbl up ${name_flag}
 	
 	echo wtf
-	cat "${root_dir}"/bbl_up.txt
 
     # The two commands below amount to "create or update"
     bbl \
