@@ -96,9 +96,19 @@ function main() {
       domain_flag="--domain=${LB_DOMAIN}"
     fi
 
-    bbl up ${name_flag}
+	echo ${name_flag}
+	echo ${domain_flag}
+	echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
+	echo ${BBL_GCP_PROJECT_ID}
+	echo ${BBL_GCP_ZONE}
+	echo ${BBL_GCP_REGION}
+	echo ${BBL_STATE_DIR}
+	echo ${BBL_LB_CERT}
+	echo ${BBL_LB_KEY}
+	echo ${LB_DOMAIN}
+	echo ${BBL_ENV_NAME}
 	
-	echo wtf
+    bbl --debug up ${name_flag} > "${root_dir}"/bbl_up.txt
 
     # The two commands below amount to "create or update"
     bbl \
