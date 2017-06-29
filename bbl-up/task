@@ -84,9 +84,9 @@ function main() {
     local name_flag
     name_flag=""
 
-    if [ -n "${BBL_ENV_NAME}" -a ! -f bbl-state.json ]; then
+    # if [ -n "${BBL_ENV_NAME}" -a ! -f bbl-state.json ]; then
       name_flag="--name ${BBL_ENV_NAME}"
-    fi
+    # fi
 
     local domain_flag
     domain_flag=""
@@ -96,6 +96,7 @@ function main() {
       domain_flag="--domain=${LB_DOMAIN}"
     fi
 
+	echo ${BBL_IAAS}
 	echo ${name_flag}
 	echo ${domain_flag}
 	echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
