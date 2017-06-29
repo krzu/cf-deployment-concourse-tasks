@@ -96,6 +96,7 @@ function main() {
       domain_flag="--domain=${LB_DOMAIN}"
     fi
 
+	bbl up --help
     bbl --debug up ${name_flag}
 
     # The two commands below amount to "create or update"
