@@ -23,11 +23,19 @@ function check_fast_fails() {
   set -x
 }
 
-function write_service_account_key() {
+function write_bbl_certs() {
   set +x
-  if [ ! -f "${BBL_GCP_SERVICE_ACCOUNT_KEY}" ]; then
-    echo "${BBL_GCP_SERVICE_ACCOUNT_KEY}" > /tmp/google_service_account.json
-    export BBL_GCP_SERVICE_ACCOUNT_KEY="/tmp/google_service_account.json"
+  if [ ! -f "${BBL_LB_CERT}" ]; then
+    echo "$BBL_LB_CERT" > /tmp/bbl-cert
+    bbl_cert_path="/tmp/bbl-cert"
+  else
+    bbl_cert_path="${BBL_LB_CERT}"
+  fi
+  if [ ! -f "${BBL_LB_KEY}" ]; then
+    echo "$BBL_LB_KEY" > /tmp/bbl-key
+    bbl_key_path="/tmp/bbl-key"
+  else
+    bbl_key_path="${BBL_LB_KEY}"
   fi
   set -x
 }
@@ -36,26 +44,39 @@ function main() {
 
 	check_fast_fails
 	
-	bbl version
-
-	pwd
-	ls
-	ls ../
-	ls ../..
-
-	echo ${BBL_IAAS}
-	echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
-	echo ${BBL_GCP_PROJECT_ID}
-	echo ${BBL_GCP_ZONE}
-	echo ${BBL_GCP_REGION}
-	echo ${BBL_STATE_DIR}
-	echo ${BBL_LB_CERT}
-	echo ${BBL_LB_KEY}
-	echo ${LB_DOMAIN}
-	echo ${BBL_ENV_NAME}
-	cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
-	
-    bbl --debug up
+	pushd "bbl-state/${BBL_STATE_DIR}"
+	  local bbl_cert_path
+      local bbl_key_path
+      write_bbl_certs
+	  
+	  bbl version
+	  
+	  local name_flag
+	  name_flag=""
+      
+	  if [ -n "${BBL_ENV_NAME}" -a ! -f bbl-state.json ]; then
+	    name_flag="--name ${BBL_ENV_NAME}"
+	  fi
+      
+	  pwd
+	  ls
+	  ls ../
+	  ls ../..
+      
+	  echo ${name_flag}
+	  echo ${BBL_IAAS}
+	  echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
+	  echo ${BBL_GCP_PROJECT_ID}
+	  echo ${BBL_GCP_ZONE}
+	  echo ${BBL_GCP_REGION}
+	  echo ${BBL_STATE_DIR}
+	  echo ${BBL_LB_CERT}
+	  echo ${BBL_LB_KEY}
+	  echo ${LB_DOMAIN}
+	  echo ${BBL_ENV_NAME}
+	  cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
+	  
+      bbl --debug up ${name_flag}
 }
 
 main ${PWD}
