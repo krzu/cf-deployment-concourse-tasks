@@ -2,8 +2,6 @@
 
 function main() {
 	echo ${BBL_IAAS}
-	echo ${name_flag}
-	echo ${domain_flag}
 	echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	echo ${BBL_GCP_PROJECT_ID}
 	echo ${BBL_GCP_ZONE}
@@ -15,7 +13,7 @@ function main() {
 	echo ${BBL_ENV_NAME}
 	cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	
-    bbl --debug up --iaas gcp --gcp-project-id concourse-sandbox --gcp-service-account-key google_account_creds.json --gcp-region europe-west1 --gcp-zone europe-west1-b > "${root_dir}"/bbl_up.txt
+    bbl --debug up --iaas gcp --gcp-project-id concourse-sandbox --gcp-service-account-key google_account_creds.json --gcp-region europe-west1 --gcp-zone europe-west1-b > bbl_up.txt
 }
 
 main ${PWD}
