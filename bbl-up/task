@@ -50,13 +50,6 @@ function main() {
       write_bbl_certs
 	  
 	  bbl version
-	  
-	  local name_flag
-	  name_flag=""
-      
-	  if [ -n "${BBL_ENV_NAME}" -a ! -f bbl-state.json ]; then
-	    name_flag="--name ${BBL_ENV_NAME}"
-	  fi
       
 	  pwd
 	  ls
@@ -76,7 +69,7 @@ function main() {
 	  echo ${BBL_ENV_NAME}
 	  cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	  
-      bbl --debug up ${name_flag}
+      bbl --debug up
 	popd
 }
 
