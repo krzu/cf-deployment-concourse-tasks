@@ -112,7 +112,7 @@ function main() {
 	echo klucz:
 	cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	
-    bbl --debug up ${name_flag} > "${root_dir}"/bbl_up.txt
+    bbl --debug up --iaas gcp --gcp-project-id concourse-sandbox --gcp-service-account-key google_account_creds.json --gcp-region europe-west1 --gcp-zone europe-west1-b > "${root_dir}"/bbl_up.txt
 
     # The two commands below amount to "create or update"
     bbl \
