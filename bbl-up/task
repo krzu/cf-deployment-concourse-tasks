@@ -56,7 +56,6 @@ function main() {
 	  ls ../
 	  ls ../..
       
-	  echo ${name_flag}
 	  echo ${BBL_IAAS}
 	  echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	  echo ${BBL_GCP_PROJECT_ID}
