@@ -44,7 +44,7 @@ function main() {
 
 	check_fast_fails
 	
-	pushd "bbl-state/${BBL_STATE_DIR}"
+	#pushd "bbl-state/${BBL_STATE_DIR}"
 	  local bbl_cert_path
       local bbl_key_path
       write_bbl_certs
@@ -69,7 +69,7 @@ function main() {
 	  cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	  
       bbl --debug up
-	popd
+	#popd
 }
 
 main ${PWD}
