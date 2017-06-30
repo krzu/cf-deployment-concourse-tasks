@@ -26,7 +26,7 @@ function main() {
 	echo ${BBL_LB_KEY}
 	echo ${LB_DOMAIN}
 	echo ${BBL_ENV_NAME}
-	cat ${BBL_GCP_SERVICE_ACCOUNT_KEY}
+	cat bbl-state/${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	
     bbl --debug up --iaas gcp --gcp-project-id concourse-sandbox --gcp-service-account-key bbl-state/google_account_creds.json --gcp-region europe-west1 --gcp-zone europe-west1-b > bbl_up.txt
 }
