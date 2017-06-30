@@ -1,6 +1,21 @@
 #!/bin/bash -xeu
 
+function write_service_account_key() {
+  set +x
+  if [ ! -f "${BBL_GCP_SERVICE_ACCOUNT_KEY}" ]; then
+    echo "${BBL_GCP_SERVICE_ACCOUNT_KEY}" > /tmp/google_service_account.json
+    export BBL_GCP_SERVICE_ACCOUNT_KEY="/tmp/google_service_account.json"
+  fi
+  set -x
+}
+
 function main() {
+
+	pwd
+	ls
+	ls ../
+	ls ../..
+
 	echo ${BBL_IAAS}
 	echo ${BBL_GCP_SERVICE_ACCOUNT_KEY}
 	echo ${BBL_GCP_PROJECT_ID}
